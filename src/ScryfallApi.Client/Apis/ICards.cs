@@ -23,6 +23,13 @@ public interface ICards
     Task<ResultList<Card>> Get(int page);
 
     /// <summary>
+    /// Get a single card by the Scryfall Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<Card> GetById(string id);
+
+    /// <summary>
     /// Search for cards with a sort option
     /// </summary>
     /// <param name="query"></param>
