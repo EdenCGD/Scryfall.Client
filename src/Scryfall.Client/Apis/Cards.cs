@@ -40,4 +40,7 @@ public class Cards : ICards
         query = WebUtility.UrlEncode(query);
         return _restService.GetAsync<ResultList<Card>>($"/cards/search?q={query}&page={page}&{options.BuildQueryString()}");
     }
+
+    public Task<Card> GetBySetAndCollectorNumber(string set, int collectorNumber, string language = null) 
+        => _restService.GetAsync<Card>($"/cards/{set}/{collectorNumber}{(language == null ? "" : $"/{language}")}");
 }

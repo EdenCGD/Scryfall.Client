@@ -81,4 +81,13 @@ public interface ICards
     /// <param name="options"></param>
     /// <returns></returns>
     Task<ResultList<Card>> Search(string query, int page, SearchOptions options);
+
+    /// <summary>
+    /// Get a single card by the Set, Collector Number and language
+    /// </summary>
+    /// <param name="set"></param>
+    /// <param name="collectorNumber"></param>
+    /// <param name="language"></param>
+    /// <returns></returns>
+    Task<Card> GetBySetAndCollectorNumber(string set, int collectorNumber, string language = null);
 }
