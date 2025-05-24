@@ -30,6 +30,41 @@ public interface ICards
     Task<Card> GetById(string id);
 
     /// <summary>
+    /// Get a single card by the TCG Player Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<Card> GetByTCGPlayerId(string id);
+
+    /// <summary>
+    /// Get a single card by the Arena Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<Card> GetByArenaId(string id);
+
+    /// <summary>
+    /// Get a single card by the MTGO Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<Card> GetByMTGOId(string id);
+
+    /// <summary>
+    /// Get a single card by the CardMarket Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<Card> GetByCardMarketId(string id);
+
+    /// <summary>
+    /// Get a single card by the Multiverse Id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    Task<Card> GetByMultiverseId(string id);
+
+    /// <summary>
     /// Search for cards with a sort option
     /// </summary>
     /// <param name="query"></param>
