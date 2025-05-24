@@ -1,9 +1,7 @@
 # Scryfall API Client
 
-[![Build status](https://gonkers.visualstudio.com/Scryfall-API-Client/_apis/build/status/Scryfall-API-Client%20Nuget)](https://gonkers.visualstudio.com/Scryfall-API-Client/_build/latest?definitionId=5)
 
 ## Getting Started
-Until I can get better documentation, see the [samples project](https://github.com/Gonkers/Scryfall-API-Client/tree/master/samples/ScryfallApi.WebSample) for examples.
 
 ---
 ## .NET Core Instructions
@@ -12,6 +10,7 @@ Until I can get better documentation, see the [samples project](https://github.c
 services.AddHttpClient<ScryfallApiClient>(client =>
 {
     client.BaseAddress = new Uri("https://api.scryfall.com/");
+    client.DefaultRequestHeaders.Add("User-Agent", "ScryfallClient/3.0.1");
 });
 ```
 ### Add a `ScryfallApiClient` parameter and member to your Controller or Razor Page
