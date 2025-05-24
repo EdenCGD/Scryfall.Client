@@ -4,14 +4,14 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <ImplicitUsings>true</ImplicitUsings>
     <PackageId>Scryfall.Client</PackageId>
-    <Version>3.0.4</Version>
-    <Authors>Gonkers</Authors>
+    <Version>3.0.5</Version>
+    <Authors>EdenCGD, Gonkers</Authors>
     <Company />
-    <Description>.NET client library for accessing the scryfall API</Description>
+    <Description>.NET client library for accessing the scryfall API, forked from ScryfallAPI.Client</Description>
     <PackageTags>scryfall scryfall-api</PackageTags>
     <LangVersion>latest</LangVersion>
-    <PackageProjectUrl>https://github.com/Gonkers/Scryfall-API-Client</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Gonkers/Scryfall-API-Client</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/EdenCGD/Scryfall.Client</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/EdenCGD/Scryfall.Client</RepositoryUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>embedded</DebugType>
