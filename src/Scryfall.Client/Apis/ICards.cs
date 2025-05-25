@@ -90,4 +90,13 @@ public interface ICards
     /// <param name="language"></param>
     /// <returns></returns>
     Task<Card> GetBySetAndCollectorNumber(string set, int collectorNumber, string language = null);
+
+    /// <summary>
+    /// Returns a Card based on a name search string.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="isFuzzy">Search for the card using a fuzzy search, if more than one card is found then an exception will be thrown explaining such.</param>
+    /// <param name="set">Refine the search by providing the set code.</param>
+    /// <returns></returns>
+    Task<Card> GetByNamed(string name, bool isFuzzy = true, string set = null);
 }

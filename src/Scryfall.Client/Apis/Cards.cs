@@ -43,4 +43,8 @@ public class Cards : ICards
 
     public Task<Card> GetBySetAndCollectorNumber(string set, int collectorNumber, string language = null) 
         => _restService.GetAsync<Card>($"/cards/{set}/{collectorNumber}{(language == null ? "" : $"/{language}")}");
+
+    public Task<Card> GetByNamed(string name, bool isFuzzy = true, string set = null)
+        => _restService.GetAsync<Card>($"/cards/named?{(isFuzzy ? $"fuzzy={name}" : $"exact={name}")}{(set == null ? "" : $"&set={set}")}");
+    
 }
