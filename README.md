@@ -1,4 +1,6 @@
 # Scryfall Client
+![NuGet Version](https://img.shields.io/nuget/v/Scryfall.Client)
+
 Scryfall Client is an unofficial .NET library for communicating with the Scryfall API.
 This project started as fork of ScryfallAPI.Client by Gonkers.
 
