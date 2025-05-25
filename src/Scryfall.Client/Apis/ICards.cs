@@ -99,4 +99,11 @@ public interface ICards
     /// <param name="set">Refine the search by providing the set code.</param>
     /// <returns></returns>
     Task<Card> GetByNamed(string name, bool isFuzzy = true, string set = null);
+
+    /// <summary>
+    /// Returns a Catalog object containing up to 20 full English card names that could be autocompletions of the given string parameter.
+    /// </summary>
+    /// <param name="name">If name provided is less than 2 characters long, or if no names match, the array will contain 0 items (instead of returning any errors).</param>
+    /// <returns></returns>
+    Task<string[]> ListAutoCompleteNames(string name);
 }

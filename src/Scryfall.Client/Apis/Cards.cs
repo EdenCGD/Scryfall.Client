@@ -46,5 +46,8 @@ public class Cards : ICards
 
     public Task<Card> GetByNamed(string name, bool isFuzzy = true, string set = null)
         => _restService.GetAsync<Card>($"/cards/named?{(isFuzzy ? $"fuzzy={name}" : $"exact={name}")}{(set == null ? "" : $"&set={set}")}");
-    
+
+    public async Task<string[]> ListAutoCompleteNames(string name) 
+        => (await _restService.GetAsync<Catalog>($"/cards/autocomplete?q={name}").ConfigureAwait(false)).Data;
+
 }
