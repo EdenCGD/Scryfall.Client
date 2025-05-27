@@ -106,4 +106,11 @@ public interface ICards
     /// <param name="name">If name provided is less than 2 characters long, or if no names match, the array will contain 0 items (instead of returning any errors).</param>
     /// <returns></returns>
     Task<string[]> ListAutoCompleteNames(string name);
+
+    /// <summary>
+    /// Accepts an array of card identifiers, and returns a ResultList object with the collection of requested cards.
+    /// </summary>
+    /// <param name="identifiers"></param>
+    /// <returns></returns>
+    Task<ResultList<Card>> GetByCollection(Identifier[] identifiers);
 }

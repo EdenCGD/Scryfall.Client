@@ -50,4 +50,6 @@ public class Cards : ICards
     public async Task<string[]> ListAutoCompleteNames(string name) 
         => (await _restService.GetAsync<Catalog>($"/cards/autocomplete?q={name}").ConfigureAwait(false)).Data;
 
+    public async Task<ResultList<Card>> GetByCollection(Identifier[] identifiers) 
+        => await _restService.PostAsync<ResultList<Card>>("/cards/collection", new { identifiers });
 }
