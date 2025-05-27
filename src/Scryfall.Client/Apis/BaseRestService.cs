@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using Scryfall.Client.Models;
+using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Scryfall.Client.Apis;
 
@@ -40,6 +42,45 @@ internal sealed class BaseRestService
             return cached;
 
         var response = await _httpClient.GetAsync(resourceUrl).ConfigureAwait(false);
+        var jsonStream = await response.Content.ReadAsStreamAsync();
+        var obj = await JsonSerializer.DeserializeAsync<T>(jsonStream);
+
+        if (obj.ObjectType.Equals("error", StringComparison.OrdinalIgnoreCase))
+        {
+            jsonStream.Position = 0;
+            var error = await JsonSerializer.DeserializeAsync<Error>(jsonStream);
+            throw new ScryfallApiException(error.Details)
+            {
+                ResponseStatusCode = response.StatusCode,
+                RequestUri = response.RequestMessage.RequestUri,
+                RequestMethod = response.RequestMessage.Method,
+                ScryfallError = error
+            };
+        }
+
+        if (useCache) _cache?.Set(cacheKey, obj, _cacheOptions);
+
+        return obj;
+    }
+
+    public async Task<T> PostAsync<T>(string resourceUrl, object payload, bool useCache = true) where T : BaseItem
+    {
+        if (string.IsNullOrWhiteSpace(resourceUrl))
+            throw new ArgumentNullException(nameof(resourceUrl));
+
+        var cacheKey = _httpClient.BaseAddress.AbsoluteUri + resourceUrl;
+
+        if (useCache && _cache != null && _cache.TryGetValue(cacheKey, out T cached))
+            return cached;
+
+        JsonSerializerOptions options = new()
+        {
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingDefault
+        };
+        var json = JsonSerializer.Serialize(payload, options);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        var response = await _httpClient.PostAsync(resourceUrl, content).ConfigureAwait(false);
         var jsonStream = await response.Content.ReadAsStreamAsync();
         var obj = await JsonSerializer.DeserializeAsync<T>(jsonStream);
 

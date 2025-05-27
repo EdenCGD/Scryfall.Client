@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <ImplicitUsings>true</ImplicitUsings>
     <PackageId>Scryfall.Client</PackageId>
-    <Version>4.0.1</Version>
+    <Version>4.0.2</Version>
     <Authors>EdenCGD, Gonkers</Authors>
     <Company />
     <Description>.NET client library for accessing the scryfall API, forked from ScryfallAPI.Client</Description>
