@@ -26,6 +26,10 @@ public class ScryfallApiClient : IScryfallApiClient
     ///<inheritdoc cref="IBulkData"/>
     public IBulkData BulkData => _bulkData.Value;
 
+    private readonly Lazy<IRulings> _rulings;
+    ///<inheritdoc cref="IRulings"/>
+    public IRulings Rulings => _rulings.Value;
+
 
     /// <summary>
     /// Instantiate a new Scryfall API client.
@@ -47,5 +51,6 @@ public class ScryfallApiClient : IScryfallApiClient
         _sets = new Lazy<ISets>(() => new Sets(restService));
         _symbology = new Lazy<ISymbology>(() => new Symbology(restService));
         _bulkData = new Lazy<IBulkData>(() => new BulkData(restService));
+        _rulings = new Lazy<IRulings>(() => new Rulings(restService));
     }
 }
